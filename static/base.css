@@ -1,0 +1,25 @@
+.ugk_footer_logo {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.ugk_footer_menu {
+    font-size: .6 rem;
+}
+
+.ugk_footer {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.ugk_header {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.ugk_header_menu {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.ugk_header_logo {
+    font-family: 'Lobster', cursive;
+}
