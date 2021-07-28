@@ -6,6 +6,21 @@
         <h1>
             TEST
         </h1>
+
+        <!--form : 서버에게 보내는 request data를 입력-->
+        <!--action : request를 보낼 주소 입력-->
+        <!--method : request를 보낼 방식을 입력-->
+        <form action="/account/hello_world/" method="post">
+            <!--장고에서 제공하는 보안기능 중 하나 해당 토큰이 없으면 post를 날릴 수 없음-->
+            {% csrf_token %}
+            <!--class btn btn-primary : bootsrtap에 있는 class중 하나-->
+            <input type="submit" class="btn btn-primary" value="POST">
+        </form>
+
+        <h1>
+            {{ text }}
+        </h1>
+
     </div>
 
 {% endblock %}
