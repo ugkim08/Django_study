@@ -2,24 +2,33 @@
 
 {% block content %}
 
-    <div style="height: 10rem; background-color: #38df81; border-radius: 1rem; margin: 2rem;">
-        <h1>
-            TEST
+    <div style="border-radius: 1rem; margin: 2rem; text-align: center;">
+        <!--17강 // font-family에서 cursive? >> font-family에서 지정한 폰트가 없을 경우 cursive를 사용하라는 의미-->
+        <h1 style="font-family: 'lobster", cursive;>
+            Hello World LIST!
         </h1>
 
-        <!--form : 서버에게 보내는 request data를 입력-->
-        <!--action : request를 보낼 주소 입력-->
-        <!--method : request를 보낼 방식을 입력-->
+        <!--16강 // form : 서버에게 보내는 request data를 입력-->
+        <!--16강 // action : request를 보낼 주소 입력-->
+        <!--16강 // method : request를 보낼 방식을 입력-->
         <form action="/account/hello_world/" method="post">
-            <!--장고에서 제공하는 보안기능 중 하나 해당 토큰이 없으면 post를 날릴 수 없음-->
+            <!--16강 // 장고에서 제공하는 보안기능 중 하나 해당 토큰이 없으면 post를 날릴 수 없음-->
             {% csrf_token %}
-            <!--class btn btn-primary : bootsrtap에 있는 class중 하나-->
-            <input type="submit" class="btn btn-primary" value="POST">
+            <div>
+                <input type="text" name="hello_world_input">
+            </div>
+            <div>
+                <!--16강 // class btn btn-primary : bootsrtap에 있는 class중 하나-->
+                <input type="submit" class="btn btn-primary" value="POST">
+            </div>
         </form>
 
+        <!-- 17강 // hello_world_output이 있다면 h1태그를 출력해라 -->
+        {% if hello_world_output %}
         <h1>
-            {{ text }}
+            {{ hello_world_output.text }}
         </h1>
+        {% endif %}
 
     </div>
 
