@@ -24,10 +24,13 @@
         </form>
 
         <!-- 17강 // hello_world_output이 있다면 h1태그를 출력해라 -->
-        {% if hello_world_output %}
-        <h1>
-            {{ hello_world_output.text }}
-        </h1>
+        {% if hello_world_list %}
+            <!-- 18강 // hello_world 안에 있는 hello_world_list를 for문으로 반복하여 출력 -->
+            {% for hello_world in hello_world_list %}
+            <h4>
+                {{  hello_world.text }}
+            </h4>
+            {% endfor %}
         {% endif %}
 
     </div>

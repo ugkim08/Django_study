@@ -1,5 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
+
 from accountapp.models import HelloWorld
 
 
@@ -19,8 +21,14 @@ def hello_world(request):
         new_hello_world.text = temp
         new_hello_world.save()
 
+        # 18강 // HelloWorld 객체에 있는 모든것들을 hello_world_list에 저장
+        #hello_world_list = HelloWorld.objects.all()
+
         # 16강 // context={} >> data 꾸러미의 일종으로 POST로 request를 받으면 POST METHOD!!!라는 이름의 text데이터를 render해주라는 의미
         # 17강 // hello_world_input에 입력된 text를 POST로 받을 경우 new_hello_world 변수로 보내 저장한다.
-        return render(request, 'accountapp/hello_world.html', context={'hello_world_output': new_hello_world})
+        # 18강 // 웹페이지를 새로고침 했을 때 마지막 입력값이 계속 나오는걸 막기 위해 HttpResponseaRedirect를 사용해서 해당 이슈를 막아야 함.
+        # 18강 // reverse 함수를 활용해서 accountapp:hello_world의 주소를 자동으로 만들어 줘야 함.
+        return HttpResponseRedirect(reverse('accountapp:hello_world'))
     else:
-        return render(request, 'accountapp/hello_world.html', context={'text': 'GET METHOD!!!'})
+        hello_world_list = HelloWorld.objects.all()
+        return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
