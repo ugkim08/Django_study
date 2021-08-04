@@ -1,6 +1,9 @@
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView
 
 from accountapp.models import HelloWorld
 
@@ -29,8 +32,18 @@ def hello_world(request):
         # 18강 // 웹페이지를 새로고침 했을 때 마지막 입력값이 계속 나오는걸 막기 위해 HttpResponseaRedirect를 사용해서 해당 이슈를 막아야 함.
         # 18강 // reverse 함수를 활용해서 accountapp:hello_world의 주소를 자동으로 입력해 줘야 함.
             # 18강 // reverse 함수는 장고 urls.py 파일 urlpatterns에서 정의된 이름을 입력하면 자동으로 해당 url을 연결시켜 줌.
-                    # 13번 라인부터 33번 라인 코드를 읽어보면  hello_world_input에 입력된 값을 POST로 accountapp models.py의 HelloWorld를 통해 DB에 추가한 뒤 HttpResponseRedirect 함수와 reverse함수를 이용해 accountapp urls.py에서 정의된 hello_world의 이름을 가진 url로 보낸다.
+                    #13번 라인부터 33번 라인 코드를 읽어보면..
+                        #1. hello_world_input에 입력된 값을 POST로 accountapp models.py의 HelloWorld를 통해 DB에 추가한 뒤
+                        #2. HttpResponseRedirect 함수와 reverse함수를 이용해 accountapp urls.py에서 정의된 hello_world의 이름을 가진 url로 보낸다.
         return HttpResponseRedirect(reverse('accountapp:hello_world'))
     else:
         hello_world_list = HelloWorld.objects.all()
         return render(request, 'accountapp/hello_world.html', context={'hello_world_list': hello_world_list})
+
+
+class AccountCreateView(CreateView):
+    model = User
+    form_class = UserCreationForm
+    # 21강 // reverse_lazy = class base view에서 사용됨. reverse는 함수 base에서 사용.
+    success_url = reverse_lazy('accountapp:hello_world')
+    template_name = 'accountapp/create.html'
