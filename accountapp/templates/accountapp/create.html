@@ -1,13 +1,20 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 
-    <div style="text-align: center">
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto">
+        <div>
+            <!-- 23강 // mb : margin bottom의 악자           -->
+            <h4 class="mb-4">
+                SignUp
+            </h4>
+        </div>
         <form action="{% url 'accountapp:create' %}" method="post">
            {% csrf_token %}
             <!-- 9번 라인은 accountapp 폴더 view.py AccountCreateView class에있는 form_class를 가져다 쓴다는 뜻.           -->
-            {{ form }}
-            <input type="submit" class="btn btn-primary">
+            {% bootstrap_form form %}
+            <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
         </form>
 
     </div>

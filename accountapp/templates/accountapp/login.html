@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 
 {% block content %}
 
-    <div style="text-align:center">
+    <div style="text-align:center; max-width: 500px; margin: 4rem auto">
         <div>
             <h4>Login</h4>
         </div>
         <div>
             <form action="" method="post">
                 {% csrf_token %}
-                {{ form }}
-                <input type="submit" class="btn btn-primary">
+<!--                {{ form }}-->
+                {% bootstrap_form form %}
+                <!-- 23강 // mt : margin-top의 줄임말 | col : element의 부모 element 너비 기준 6만큼 설정 (col 6 = 너비를 60%만큼 설정)             -->
+                <input type="submit" class="btn btn-dark rounded-pill col-6 mt-3">
             </form>
         </div>
     </div>
