@@ -13,6 +13,9 @@
         </a>
         <!--22강 // 15번 라인 : 유저가 로그인 되지 않았다면 17번 라인에 있는 로그아웃을 보여줘라        -->
         {% else %}
+        <a href="{% url 'accountapp:detail' pk=user.pk %}">
+            <span>MyPage</span>
+        </a>
         <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
             <span>logout</span>
         </a>
