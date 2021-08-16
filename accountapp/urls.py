@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from accountapp.views import hello_world, AccountCreateView, AccountDetailView, AccountUpdateView
+from accountapp.views import hello_world, AccountCreateView, AccountDetailView, AccountUpdateView, AccountDeleteView
 
 app_name = "accountapp"
 
@@ -19,4 +19,5 @@ urlpatterns = [
     # 24강 // detail view의 경우 특정유저의 primary key(ID)가 필요한대 primary key는 특정유저에게 부여된 고유 키값임 like user token > primary key는 20번 라인에서 <int/pk에 해당함.>
     path('detail/<int:pk>', AccountDetailView.as_view(), name='detail'),
     path('update/<int:pk>', AccountUpdateView.as_view(), name='update'),
+    path('delete/<int:pk>', AccountDeleteView.as_view(), name='delete'),
 ]
