@@ -3,25 +3,26 @@
         <h1 class="ugk_header_logo">UGK</h1>
     </div>
     <div class="ugk_header_menu">
-        <a href="{% url 'articleapp:list' %}">
+        <a href="{% url 'articleapp:list' %}" class="header_nav">
             <span>Articles</span>
         </a>
-        <span>nav2</span>
-        <span>nav3</span>
+        <a href="{% url 'projectapp:list' %}" class="header_nav">
+            <span>Projects</span>
+        </a>
         <!--22강 // 10번 라인 : 유저가 로그인 되지 않았다면 12번 라인에 있는 로그인을 보여주고,       -->
         {% if not user.is_authenticated %}
-        <a href="{% url 'accountapp:login' %}?next={{ request.path }}">
+        <a href="{% url 'accountapp:login' %}?next={{ request.path }}" class="header_nav">
             <span>login</span>
         </a>
-        <a href="{% url 'accountapp:create' %}">
+        <a href="{% url 'accountapp:create' %}" class="header_nav">
             <span>SignUp</span>
         </a>
         <!--22강 // 15번 라인 : 유저가 로그인 되지 않았다면 17번 라인에 있는 로그아웃을 보여줘라        -->
         {% else %}
-        <a href="{% url 'accountapp:detail' pk=user.pk %}">
+        <a href="{% url 'accountapp:detail' pk=user.pk %}" class="header_nav">
             <span>MyPage</span>
         </a>
-        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}">
+        <a href="{% url 'accountapp:logout' %}?next={{ request.path }}" class="header_nav">
             <span>logout</span>
         </a>
         {% endif %}
