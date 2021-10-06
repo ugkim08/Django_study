@@ -13,6 +13,7 @@ from commentapp.forms import CommentCreationForm
 from projectapp.forms import ProjectCreationForm
 from projectapp.models import Project
 
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
 class ProjectCreateView(CreateView):
@@ -23,15 +24,17 @@ class ProjectCreateView(CreateView):
     def get_success_url(self):
         return reverse('projectapp:detail', kwargs={'pk': self.object.pk})
 
+
 class ProjectDetailView(DetailView, MultipleObjectMixin):
     model = Project
-    context_project_name = 'target_project'
+    context_object_name = 'target_project'
     template_name = 'projectapp/detail.html'
     paginate_by = 25
 
     def get_context_data(self, **kwargs):
         object_list = Article.objects.filter(project=self.get_object())
         return super(ProjectDetailView, self).get_context_data(object_list=object_list, **kwargs)
+
 
 class ProjectListView(ListView):
     model = Project
