@@ -7,4 +7,4 @@ RUN pip install gunicorn
 RUN echo "SECRET_KEY=django-insecure-$31-6mesxgo6$3)kwb@)dq3nlh&dv&sjtmx$h^-0zl%939@xt@" > .env
 RUN python manage.py migrate
 EXPOSE 8000
-CMD ["gunicorn", "ugkim08.wsgi", "--bind", "0.0.0.0:8000"]
+CMD ["gunicorn", "ugk.wsgi", "--bind", "0.0.0.0:8000"]
